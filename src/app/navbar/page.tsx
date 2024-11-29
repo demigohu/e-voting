@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ClaimToken from "../vtk-claim/page";
 
 export default function Navbar() {
   return (
@@ -15,6 +16,9 @@ export default function Navbar() {
         </li>
         <li>
           <w3m-button />
+        </li>
+        <li>
+          <ClaimToken />
         </li>
       </ul>
     </nav>
