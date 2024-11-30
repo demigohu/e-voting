@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { getContractWithSigner } from "@/utils/ethers";
@@ -24,7 +24,7 @@ export default function ViewCandidates() {
         }
         setCandidates(candidateArray);
       } catch (err) {
-        console.error(err);
+        console?.error(err);
         setError("Failed to load candidates.");
       }
     }
