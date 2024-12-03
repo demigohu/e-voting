@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import backgroundImg from "@/assets/login_bg.jpg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,16 +20,22 @@ export default function Home() {
             </p>
             <footer className="text-sm">Demigohu</footer>
           </blockquote>
-          <Button variant={"outline"} className="lg:hidden">
+          <Link
+            href="/candidates"
+            className="lg:hidden h-9 px-4 py-2 rounded-md text-sm font-medium border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground flex items-center justify-center"
+          >
             <w3m-button />
-          </Button>
+          </Link>
         </div>
       </div>
       <div className="lg:p-8 h-full lg:float-start lg:flex items-center bg-black/10 hidden">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <Button variant={"outline"}>
+          <Link
+            className="px-4 py-2 h-9 rounded-md text-sm font-medium border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground flex items-center justify-center"
+            href="/candidates"
+          >
             <w3m-button />
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
