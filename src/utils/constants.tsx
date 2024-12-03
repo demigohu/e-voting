@@ -1,4 +1,4 @@
-export const contractAddress = "0xD5B00E701861EF87fc5461C0C4Ce361A562eE457";
+export const contractAddress = "0x06AA2a59321B13B4bF6884B0281b8FEF8872F90B";
 export const contractABI = [
   {
     inputs: [
@@ -12,8 +12,31 @@ export const contractABI = [
         name: "_photoUrl",
         type: "string",
       },
+      {
+        internalType: "string",
+        name: "_vision",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_mission",
+        type: "string",
+      },
     ],
     name: "addCandidate",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_durationInSeconds",
+        type: "uint256",
+      },
+    ],
+    name: "setVotingTime",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -48,6 +71,18 @@ export const contractABI = [
         indexed: false,
         internalType: "string",
         name: "photoUrl",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "vision",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "mission",
         type: "string",
       },
     ],
@@ -87,6 +122,38 @@ export const contractABI = [
     type: "event",
   },
   {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "totalVotes",
+        type: "uint256",
+      },
+    ],
+    name: "VotingEnded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startTime",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "endTime",
+        type: "uint256",
+      },
+    ],
+    name: "VotingTimeSet",
+    type: "event",
+  },
+  {
     inputs: [],
     name: "admin",
     outputs: [
@@ -122,6 +189,16 @@ export const contractABI = [
       {
         internalType: "string",
         name: "photoUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "vision",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "mission",
         type: "string",
       },
       {
@@ -172,6 +249,29 @@ export const contractABI = [
         type: "string",
       },
       {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getFinalVotes",
+    outputs: [
+      {
         internalType: "uint256",
         name: "",
         type: "uint256",
@@ -220,6 +320,32 @@ export const contractABI = [
         internalType: "bool",
         name: "",
         type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "votingEndTime",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "votingStartTime",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
