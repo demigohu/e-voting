@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import backgroundImg from "@/../public/bg.jpg";
+import backgroundImg from "@/assets/login_bg.jpg";
 
 export default function Home() {
   return (
-    <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="relative h-screen flex-col items-center justify-center grid lg:grid-cols-2 lg:px-0">
       <div
-        className="relative h-full flex-col bg-muted p-10 text-white dark:border-r flex bg-cover bg-no-repeat"
+        className="relative w-full h-full flex-col bg-muted p-10 text-white dark:border-r flex bg-cover bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImg.src})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
@@ -23,7 +23,7 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      <div className="lg:p-8 h-full lg:float-start lg:flex items-center hidden">
+      <div className="lg:p-8 h-full lg:float-start lg:flex items-center bg-black/10 hidden">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <Button variant={"outline"}>
             <w3m-button />
