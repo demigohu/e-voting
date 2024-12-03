@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { useState } from "react";
 import VotingTokenABI from "@/utils/VotingToken.json";
 
-const VotingTokenAddress = "0xCD4d331E372B0712D0dC27363937855FDFcBF8E7";
+const VotingTokenAddress = "0x0b7053f68A51bA4E95AB7E33b9686e1898917201";
 
 function ClaimToken() {
   const [success, setSuccess] = useState(false);

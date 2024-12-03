@@ -12,11 +12,13 @@ export default function Home() {
         <div className="relative z-20 mt-auto h-full flex flex-col justify-center gap-10">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;This library has saved me countless hours of work and
-              helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
+              &ldquo;Lorem Ipsum is simply dummy text of the printing and
+              typesetting industry. Lorem Ipsum has been the industry&apos;s
+              standard dummy text ever since the 1500s, when an unknown printer
+              took a galley of type and scrambled it to make a type specimen
+              book.&rdquo;
             </p>
-            <footer className="text-sm">Sofia Davis</footer>
+            <footer className="text-sm">Demigohu</footer>
           </blockquote>
           <Button variant={"outline"} className="lg:hidden">
             <w3m-button />
