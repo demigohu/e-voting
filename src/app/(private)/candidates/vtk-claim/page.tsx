@@ -2,7 +2,7 @@
 
 import { ethers } from "ethers";
 import { useState } from "react";
-import VotingTokenABI from "../../../utils/VotingToken.json";
+import VotingTokenABI from "@/utils/VotingToken.json";
 
 const VotingTokenAddress = "0xCD4d331E372B0712D0dC27363937855FDFcBF8E7";
 

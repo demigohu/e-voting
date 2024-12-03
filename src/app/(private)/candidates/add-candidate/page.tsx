@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getContractWithSigner } from "../../../utils/ethers";
+import { getContractWithSigner } from "../../../../utils/ethers";
 
 export default function AddCandidate() {
   const [candidate, setCandidate] = useState({ name: "", photoUrl: "" });
