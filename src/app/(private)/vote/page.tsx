@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import { getContractWithSigner } from "@/utils/ethers";
 import CountdownTimer from "@/components/timer";
+import OverlayIMG from "@/assets/login_bg.jpg";
+import { TypeCandidate } from "@/modules/candidate";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Vote() {
-  const [candidates, setCandidates] = useState([]);
+  const [candidates, setCandidates] = useState<TypeCandidate[]>([]);
   const [endTime, setEndTime] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(
     Math.floor(Date.now() / 1000)
@@ -37,11 +41,14 @@ export default function Vote() {
             id: candidate[0],
             name: candidate[1],
             photoUrl: candidate[2],
+            vision: candidate[3],
+            mission: candidate[4],
             voteCount: candidate[5].toString(),
           });
         }
         setCandidates(candidateArray);
       } catch (err) {
+        console.error(err);
         setError("Failed to load candidates.");
       }
     }
@@ -57,6 +64,7 @@ export default function Vote() {
       setSuccess(`You voted for candidate ID: ${candidateId}`);
       setError(null);
     } catch (err) {
+      console.error(err);
       setError(
         "Failed to vote. Ensure you have not already voted or you have voting tokens."
       );
@@ -65,52 +73,67 @@ export default function Vote() {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Vote</h1>
+    <div
+      className="layoutPage"
+      style={{ backgroundImage: `url(${OverlayIMG.src})` }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="ContainerContent relative text-white">
+        <h1 className="text-2xl font-bold text-center">Vote</h1>
 
-      {/* Tampilkan timer */}
-      {endTime && (
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold">Voting Ends In:</h2>
-          <CountdownTimer endTime={endTime} />
-        </div>
-      )}
-
-      {candidates.length > 0 ? (
-        candidates.map((candidate) => (
-          <div
-            key={candidate.id}
-            className="border rounded p-4 mb-4 flex items-center"
-          >
-            <img
-              src={candidate.photoUrl}
-              alt={candidate.name}
-              className="w-16 h-16 object-cover mr-4"
-            />
-            <div>
-              <p className="font-semibold">Name: {candidate.name}</p>
-              {/* Hanya tampilkan vote count jika waktu voting berakhir */}
-              {currentTime > (endTime ?? 0) ? (
-                <p>Votes: {candidate.voteCount}</p>
-              ) : (
-                <p className="text-gray-500">
-                  Votes will be visible after voting ends.
-                </p>
-              )}
-              <button
-                onClick={() => handleVote(candidate.id)}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded"
-              >
-                Vote
-              </button>
-            </div>
+        {/* Tampilkan timer */}
+        {endTime && (
+          <div className="mb-4 flex items-center justify-center gap-2">
+            <h2 className="font-semibold">Voting Ends In :</h2>
+            <CountdownTimer endTime={endTime} />
           </div>
-        ))
-      ) : (
-        <p>No candidates available.</p>
-      )}
-      {success && <p className="mt-4 text-green-500">{success}</p>}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+        )}
+
+        <div className="grid grid-cols-2 mt-10">
+          {candidates.length > 0 ? (
+            candidates.map((candidate) => (
+              <div
+                key={candidate.id}
+                className="Card w-max mx-auto p-5 flex flex-col items-center justify-center"
+              >
+                <Image
+                  src={candidate.photoUrl}
+                  alt={candidate.name}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-52 h-52 object-cover rounded-xl"
+                />
+                <div className="flex flex-col justify-center items-center gap-2 mt-5">
+                  <p className="font-semibold text-center text-xl">
+                    {candidate.name}
+                  </p>
+                  {/* Hanya tampilkan vote count jika waktu voting berakhir */}
+                  {currentTime > (endTime ?? 0) ? (
+                    <p>Votes: {candidate.voteCount}</p>
+                  ) : (
+                    <p className="text-gray-500">
+                      Votes will be visible after voting ends.
+                    </p>
+                  )}
+                  <Button
+                    onClick={() => handleVote(candidate.id)}
+                    className="bg-blue-600 hover:bg-blue-700"
+                  >
+                    Vote
+                  </Button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="col-span-3 text-center">No candidates available.</p>
+          )}
+        </div>
+        {success && (
+          <p className="mt-4 text-green-500 text-center">{success}</p>
+        )}
+        {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
+      </div>
     </div>
   );
 }

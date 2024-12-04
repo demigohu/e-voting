@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { getContractWithSigner } from "@/utils/ethers";
 import CountdownTimer from "@/components/timer";
 import { CatSleep } from "@/components/CatSleep";
-import { dataCandidates } from "../data/candidate";
+// import { dataCandidates } from "../data/candidate";
 import Image from "next/image";
 import OverlayIMG from "@/assets/login_bg.jpg";
+import { TypeCandidate } from "@/modules/candidate";
 
 export default function ViewCandidates() {
+  const [candidates, setCandidates] = useState<TypeCandidate[]>([]);
   const [endTime, setEndTime] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(
     Math.floor(Date.now() / 1000)
@@ -42,6 +44,7 @@ export default function ViewCandidates() {
             voteCount: candidate[5].toString(),
           });
         }
+        setCandidates(candidateArray);
       } catch (err) {
         console.error(err);
       }
@@ -52,7 +55,7 @@ export default function ViewCandidates() {
 
   return (
     <div
-      className="h-full min-h-screen bg-cover bg-no-repeat bg-center relative"
+      className="layoutPage"
       style={{ backgroundImage: `url(${OverlayIMG.src})` }}
     >
       <div className="absolute inset-0 bg-black/50" />
@@ -67,8 +70,8 @@ export default function ViewCandidates() {
           </div>
         )}
         <div className="grid grid-cols-2 gap-10">
-          {dataCandidates.length > 0 ? (
-            dataCandidates.map((candidate) => (
+          {candidates.length > 0 ? (
+            candidates.map((candidate) => (
               <div key={candidate.id} className="Card">
                 <div className="flex items-start gap-5">
                   {candidate.photoUrl ? (
@@ -99,16 +102,24 @@ export default function ViewCandidates() {
                     )}
                   </div>
                 </div>
-                <p className="font-semibold">Vision:</p>
-                <p className="mb-4">{candidate.vision}</p>
-                <p className="font-semibold">Mission:</p>
-                <p className="mb-4">{candidate.mission}</p>
+                <div className="grid grid-cols-2">
+                  <div>
+                    <p className="font-semibold text-lg">Vision:</p>
+                    <p className="text-neutral-300">{candidate.vision}</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Mission:</p>
+                    <p className="text-neutral-300">{candidate.mission}</p>
+                  </div>
+                </div>
               </div>
             ))
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-[50vh]">
+            <div className="col-span-2 flex flex-col justify-center items-center min-h-[50vh]">
               <CatSleep className="w-10/12 md:w-1/2 mx-auto lg:-mt-32" />
-              <p>no candidates yet</p>
+              <p className="-mt-32 text-red-600 font-bold text-xl">
+                no candidates yet
+              </p>
             </div>
           )}
         </div>

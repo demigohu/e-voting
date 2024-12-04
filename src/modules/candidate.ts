@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 
 interface TypeCandidate {
-  id: string;
+  id: number;
   name: string;
   photoUrl: StaticImageData;
   vision: string;

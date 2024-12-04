@@ -43,7 +43,7 @@ export default function AddCandidate() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-no-repeat bg-center relative"
+      className="layoutPage"
       style={{ backgroundImage: `url(${OverlayIMG.src})` }}
     >
       <div className="absolute inset-0 bg-black/50" />
