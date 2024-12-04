@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { getContractWithSigner } from "@/utils/ethers";
+import OverlayIMG from "@/assets/login_bg.jpg";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function AddCandidate() {
   const [candidate, setCandidate] = useState({ name: "", photoUrl: "" });
@@ -39,46 +42,60 @@ export default function AddCandidate() {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Add Candidate</h1>
-      <input
-        type="text"
-        placeholder="Candidate Name"
-        value={candidate.name}
-        onChange={(e) => setCandidate({ ...candidate, name: e.target.value })}
-        className="block mt-2 p-2 border rounded"
-      />
-      <input
-        type="text"
-        placeholder="Photo URL"
-        value={candidate.photoUrl}
-        onChange={(e) =>
-          setCandidate({ ...candidate, photoUrl: e.target.value })
-        }
-        className="block mt-2 p-2 border rounded"
-      />
-      <button
-        onClick={handleAddCandidate}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-      >
-        Add Candidate
-      </button>
-      <h2 className="text-xl font-bold mt-8">Set Voting Time</h2>
-      <input
-        type="number"
-        placeholder="Duration in seconds"
-        value={duration}
-        onChange={(e) => setDuration(e.target.value)}
-        className="block mt-2 p-2 border rounded"
-      />
-      <button
-        onClick={handleSetVotingTime}
-        className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
-      >
-        Set Voting Time
-      </button>
-      {success && <p className="mt-4 text-green-500">{success}</p>}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+    <div
+      className="min-h-screen bg-cover bg-no-repeat bg-center relative"
+      style={{ backgroundImage: `url(${OverlayIMG.src})` }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
+
+      <div className="relative min-h-screen flex flex-col justify-center items-center">
+        <div className="Card p-10 text-white w-96 mx-auto">
+          <h1 className="text-2xl font-bold mb-3">Add Candidate</h1>
+          <div className="flex flex-col gap-2">
+            <Input
+              type="text"
+              placeholder="Candidate Name"
+              value={candidate.name}
+              onChange={(e) =>
+                setCandidate({ ...candidate, name: e.target.value })
+              }
+            />
+            <Input
+              type="text"
+              placeholder="Photo URL"
+              value={candidate.photoUrl}
+              onChange={(e) =>
+                setCandidate({ ...candidate, photoUrl: e.target.value })
+              }
+            />
+            <Button
+              onClick={handleAddCandidate}
+              className="bg-blue-600 hover:bg-blue-700 w-full"
+            >
+              Add Candidate
+            </Button>
+          </div>
+          <h2 className="text-2xl font-bold mt-8 mb-3">Set Voting Time</h2>
+          <div className="flex flex-col gap-2">
+            <Input
+              type="number"
+              placeholder="Duration in seconds"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            />
+            <Button
+              onClick={handleSetVotingTime}
+              className="bg-green-600 hover:bg-green-700 w-full"
+            >
+              Set Voting Time
+            </Button>
+          </div>
+          {success && (
+            <p className="mt-4 text-green-500 text-center">{success}</p>
+          )}
+          {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
+        </div>
+      </div>
     </div>
   );
 }

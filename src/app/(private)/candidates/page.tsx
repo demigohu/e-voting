@@ -69,10 +69,7 @@ export default function ViewCandidates() {
         <div className="grid grid-cols-2 gap-10">
           {dataCandidates.length > 0 ? (
             dataCandidates.map((candidate) => (
-              <div
-                key={candidate.id}
-                className="rounded-xl bg-black/70 text-card-foreground shadow p-4 text-white"
-              >
+              <div key={candidate.id} className="Card">
                 <div className="flex items-start gap-5">
                   {candidate.photoUrl ? (
                     <Image

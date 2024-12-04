@@ -74,4 +74,8 @@ body {
   .ContainerContent {
     @apply lg:py-24 lg:px-20;
   }
+
+  .Card {
+    @apply rounded-xl bg-black/70 shadow p-4;
+  }
 }
