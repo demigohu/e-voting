@@ -89,7 +89,7 @@ export default function Vote() {
           </div>
         )}
 
-        <div className="grid grid-cols-2 mt-10">
+        <div className="grid gap-5 md:gap-0 md:grid-cols-2 mt-10">
           {candidates.length > 0 ? (
             candidates.map((candidate) => (
               <div

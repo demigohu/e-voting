@@ -49,7 +49,7 @@ export default function AddCandidate() {
       <div className="absolute inset-0 bg-black/50" />
 
       <div className="relative min-h-screen flex flex-col justify-center items-center">
-        <div className="Card p-10 text-white w-96 mx-auto">
+        <div className="Card p-10 text-white w-80 md:w-96 mx-auto">
           <h1 className="text-2xl font-bold mb-3">Add Candidate</h1>
           <div className="flex flex-col gap-2">
             <Input
