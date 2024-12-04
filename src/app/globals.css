@@ -70,4 +70,8 @@ body {
   .Container {
     @apply max-w-screen-2xl mx-auto;
   }
+
+  .ContainerContent {
+    @apply lg:py-24 lg:px-20;
+  }
 }

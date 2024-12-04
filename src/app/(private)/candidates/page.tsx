@@ -14,7 +14,6 @@ export default function ViewCandidates() {
     Math.floor(Date.now() / 1000)
   );
 
-  // Update current time setiap detik
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(Math.floor(Date.now() / 1000));
@@ -53,61 +52,70 @@ export default function ViewCandidates() {
 
   return (
     <div
-      className="h-full bg-cover bg-no-repeat bg-center relative"
+      className="h-full min-h-screen bg-cover bg-no-repeat bg-center relative"
       style={{ backgroundImage: `url(${OverlayIMG.src})` }}
     >
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative text-red-600 pt-32">
+      <div className="ContainerContent relative text-white">
         <h1 className="text-2xl font-bold">Candidates</h1>
 
         {/* Tampilkan timer */}
         {endTime && (
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold">Voting Ends In:</h2>
+          <div className="mb-4 flex items-center gap-2">
+            <h2 className="font-semibold">Voting Ends In :</h2>
             <CountdownTimer endTime={endTime} />
           </div>
         )}
+        <div className="grid grid-cols-2 gap-10">
+          {dataCandidates.length > 0 ? (
+            dataCandidates.map((candidate) => (
+              <div
+                key={candidate.id}
+                className="rounded-xl bg-black/70 text-card-foreground shadow p-4 text-white"
+              >
+                <div className="flex items-start gap-5">
+                  {candidate.photoUrl ? (
+                    <Image
+                      src={candidate.photoUrl}
+                      alt={candidate.name}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      className="w-52 h-52 rounded-xl shadow object-cover mb-4"
+                    />
+                  ) : (
+                    <p className="text-gray-500 mb-4">No photo available</p>
+                  )}
+                  <div className="flex flex-col gap-2 text-xl font-bold">
+                    <div className="flex items-center gap-2">
+                      <p>Name : </p>
+                      <h2>{candidate.name}</h2>
+                    </div>
+                    {currentTime > (endTime ?? 0) ? (
+                      <p className="font-semibold">
+                        Votes : {candidate.voteCount}
+                      </p>
+                    ) : (
+                      <p className="text-gray-500">
+                        Votes will be visible after voting ends.
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <p className="font-semibold">Vision:</p>
+                <p className="mb-4">{candidate.vision}</p>
+                <p className="font-semibold">Mission:</p>
+                <p className="mb-4">{candidate.mission}</p>
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col justify-center items-center min-h-[50vh]">
+              <CatSleep className="w-10/12 md:w-1/2 mx-auto lg:-mt-32" />
+              <p>no candidates yet</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-
-    //   {dataCandidates.length > 0 ? (
-    //     dataCandidates.map((candidate) => (
-    //       <div key={candidate.id} className="p-4 border rounded mt-4">
-    //         <h2 className="text-xl font-bold mb-2">{candidate.name}</h2>
-    //         {candidate.photoUrl ? (
-    //           <Image
-    //             src={candidate.photoUrl}
-    //             alt={candidate.name}
-    //             width={0}
-    //             height={0}
-    //             sizes="100vw"
-    //             className="w-32 h-32 object-cover mb-4"
-    //           />
-    //         ) : (
-    //           <p className="text-gray-500 mb-4">No photo available</p>
-    //         )}
-    //         <p className="font-semibold">Vision:</p>
-    //         {/* <p className="mb-4">{candidate.vision}</p> */}
-    //         <p className="font-semibold">Mission:</p>
-    //         {/* <p className="mb-4">{candidate.mission}</p> */}
-    //         {/* Hanya tampilkan vote count jika waktu voting berakhir */}
-    //         {currentTime > (endTime ?? 0) ? (
-    //           <p className="font-semibold">Votes: {candidate.voteCount}</p>
-    //         ) : (
-    //           <p className="text-gray-500">
-    //             Votes will be visible after voting ends.
-    //           </p>
-    //         )}
-    //       </div>
-    //     ))
-    //   ) : (
-    //     <div className="flex flex-col justify-center items-center min-h-[50vh]">
-    //       <CatSleep className="w-10/12 md:w-1/2 mx-auto lg:-mt-32" />
-    //       <p className="-mt-20 lg:-mt-40 text-center text-red-600 font-bold text-xl">
-    //         {errorMsg}
-    //       </p>
-    //     </div>
-    //   )}
-    // </div>
   );
 }
