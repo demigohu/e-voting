@@ -72,7 +72,7 @@ body {
   }
 
   .ContainerContent {
-    @apply lg:pt-24 lg:px-20;
+    @apply pt-24 pb-10 px-5 md:px-10 lg:px-20;
   }
 
   .layoutPage {

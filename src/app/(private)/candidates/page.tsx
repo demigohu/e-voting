@@ -69,11 +69,11 @@ export default function ViewCandidates() {
             <CountdownTimer endTime={endTime} />
           </div>
         )}
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-10">
           {candidates.length > 0 ? (
             candidates.map((candidate) => (
               <div key={candidate.id} className="Card">
-                <div className="flex items-start gap-5">
+                <div className="flex flex-col md:flex-row items-start gap-5">
                   {candidate.photoUrl ? (
                     <Image
                       src={candidate.photoUrl}
@@ -81,7 +81,7 @@ export default function ViewCandidates() {
                       width={0}
                       height={0}
                       sizes="100vw"
-                      className="w-52 h-52 rounded-xl shadow object-cover mb-4"
+                      className="w-full h-72 md:w-52 md:h-52 rounded-xl shadow object-cover md:mb-4"
                     />
                   ) : (
                     <p className="text-gray-500 mb-4">No photo available</p>
@@ -102,7 +102,7 @@ export default function ViewCandidates() {
                     )}
                   </div>
                 </div>
-                <div className="grid grid-cols-2">
+                <div className="grid md:grid-cols-2 mt-2">
                   <div>
                     <p className="font-semibold text-lg">Vision:</p>
                     <p className="text-neutral-300">{candidate.vision}</p>
