@@ -13,7 +13,6 @@ export default function ViewCandidates() {
   const [currentTime, setCurrentTime] = useState<number>(
     Math.floor(Date.now() / 1000)
   );
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Update current time setiap detik
   useEffect(() => {
@@ -39,14 +38,13 @@ export default function ViewCandidates() {
             id: candidate[0],
             name: candidate[1],
             photoUrl: candidate[2],
-            vision: candidate[3], // Assumes vision is at index 3
-            mission: candidate[4], // Assumes mission is at index 4
+            vision: candidate[3],
+            mission: candidate[4],
             voteCount: candidate[5].toString(),
           });
         }
       } catch (err) {
-        // console?.error("Error loading candidates:", err);
-        setErrorMsg(`No Candidates Available ${err}`);
+        console.error(err);
       }
     }
 
@@ -59,7 +57,7 @@ export default function ViewCandidates() {
       style={{ backgroundImage: `url(${OverlayIMG.src})` }}
     >
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative text-white pt-32">
+      <div className="relative text-red-600 pt-32">
         <h1 className="text-2xl font-bold">Candidates</h1>
 
         {/* Tampilkan timer */}
@@ -71,16 +69,6 @@ export default function ViewCandidates() {
         )}
       </div>
     </div>
-    // <div className="p-4 h-full">
-    //   <h1 className="text-2xl font-bold">Candidates</h1>
-
-    //   {/* Tampilkan timer */}
-    //   {endTime && (
-    //     <div className="mb-4">
-    //       <h2 className="text-lg font-semibold">Voting Ends In:</h2>
-    //       <CountdownTimer endTime={endTime} />
-    //     </div>
-    //   )}
 
     //   {dataCandidates.length > 0 ? (
     //     dataCandidates.map((candidate) => (
